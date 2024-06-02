@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <title>RFC login</title>
+</head>
+<body>
+    <div class="container mb-5">
+        <div class="mt-2 col-sm-5 mx-auto">
+            {% if messages %}
+                {% for message in messages %}
+                    <p {% if message %} class="alert alert-{{message.tags}} mb-5 alert-dismissible fade show" {% endif %} role="alert">{{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+                        </button>
+                    </p>
+                {% endfor %}
+            {% endif %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p class="alert alert-danger my-3  alert-dismissible fade show"  role="alert">{{error}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+                        </button>
+                    </p>
+                {% endfor %}
+            {% endif %}
+            
+            <form action="" method="POST" novalidate class="shadow p-5 mt-5 border">
+                <h3 class="text-center fw-bold mb-5">RFC Login</h3>
+                 {% csrf_token %}
+                <label for="id_username">Username:</label> <input type="text" name="username" class="form-control" autofocus autocapitalize="none" autocomplete="username" required id="id_username"> <br> 
+                
+                <label for="id_password">Password:</label> <input type="password" name="password" class="form-control"  required id="id_password"> <br>
+            
+                <input type="submit" class='btn btn-primary' value="Login">                
+
+            </form>
+        </div>
+    </div> 
+    
+
+    
+
+<script src="{% static 'js/fontawesome.js' %}"></script>    
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

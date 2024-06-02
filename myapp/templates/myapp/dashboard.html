@@ -1,0 +1,99 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block title %}  <title>Dashboard</title>  {% endblock title %}
+
+
+{% block content %}
+<div class="col-sm-12 mt-1">
+    {% if messages %}
+    {% for message in messages %}
+        <p {% if message %} class="alert alert-{{message.tags}} mb-5 alert-dismissible fade show" {% endif %} role="alert">{{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+            </button>
+        </p>
+    {% endfor %}
+{% endif %}
+{% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+        <p class="alert alert-danger my-3  alert-dismissible fade show"  role="alert">{{error}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+            </button>
+        </p>
+    {% endfor %}
+{% endif %}
+</div>
+<br><br><br>
+    <h2 class="">Dashboard</h2>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3 p-2">
+            <div class="card shadow">
+                <div class="card-body bg-primary opacity-50">
+                    <h1 class="text-dark text-end">1</h1>
+                    <h6 class="text-white text-end"> OPEN</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'opened_rfc' %}" style="text-decoration: none;">View Details >></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 p-2">
+            <div class="card shadow">
+                <div class="card-body bg-success opacity-75">
+                    <h1 class="text-dark text-end">2</h1>
+                    <h6 class="text-white text-end"> CLOSED</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'closed_rfc' %}" style="text-decoration: none;">View Details >></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 p-2">
+            <div class="card shadow">
+                <div class="card-body bg-secondary opacity-75">
+                    <h1 class="text-dark text-end">3</h1>
+                    <h6 class="text-white text-end"> REJECTED</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'rejected_rfc' %}" style="text-decoration: none;">View Details >></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 p-2">
+            <div class="card shadow">
+                <div class="card-body bg-danger opacity-75">
+                    <h1 class="text-dark text-end">4</h1>
+                    <h6 class="text-white text-end"> CANCELLED</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="" style="text-decoration: none;">View Details  >></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 p-2">
+            <div class="card shadow">
+                <div class="card-body bg-warning opacity-75">
+                    <h1 class="text-dark text-end">5</h1>
+                    <h6 class="text-white text-end"> HOLD</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="" style="text-decoration: none;">View Details >></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 p-2">
+            <div class="card shadow">
+                <div class="card-body bg-danger opacity-50">
+                    <h1 class="text-dark text-end">6</h1>
+                    <h6 class="text-white text-end"> ROLLBACK</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'rollback_rfc' %}" style="text-decoration: none;">View Details >></a>
+                </div>
+            </div>
+        </div>  
+    </div><br> <br> <br> <br> <br> <br> 
+
+{% endblock content %}
+    

@@ -1,0 +1,118 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block title %}  <title>RFC Raise</title>  {% endblock title %}
+
+
+{% block content %}
+    <h2 class="text-center mt-2">Raise Request</h2>
+    <!-- message framework use -->
+    {% if messages %}
+        {% for message in messages %}
+            <p {% if message %} class="alert alert-{{message.tags}} mb-5 alert-dismissible fade show" {% endif %}  role="alert">{{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+                </button>
+            </p>
+        {% endfor %}
+    {% endif %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p class="alert alert-danger my-3 alert-dismissible fade show" role="alert">{{error}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+                </button>
+            </p>
+        {% endfor %}
+    {% endif %}
+    <hr>
+    <div class="container-fluid border p-3 rounded-3 fw-bold">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-3">
+                    {{form.Reference_RFC_No.label_tag}}{{form.Reference_RFC_No}}
+                </div>
+                <div class="col-sm-4 offset-5">
+                    {{form.Department.label_tag}}{{form.Department}}
+                </div>
+            </div>  <br>
+            <div class="row">
+                <div class="col-sm-3">
+                    {{form.Request_Type.label_tag}}{{form.Request_Type}}
+                </div>
+                <div class="col-sm-4 offset-5 mt-4">
+                    {{form.Environment.label_tag}}{{form.Environment}}
+                </div>
+            </div> <br>
+            <div class="row">
+                <div class="col-sm-2">
+                    {{form.Planned_Date.label_tag}}{{form.Planned_Date}}
+                </div>
+                <div class="col-sm-4 offset-6">
+                    {{form.Category.label_tag}}{{form.Category}}
+                </div>
+            </div> <br>
+            <div class="col-sm-11">
+                {{form.Reason_for_change.label_tag}}{{form.Reason_for_change}}
+            </div> <br>
+            <div class="col-sm-11">
+                {{form.Description_of_change.label_tag}}{{form.Description_of_change}}
+            </div> <br>
+            <div class="row">
+                <div class="col-sm-3">
+                    {{form.System_Details.label_tag}}{{form.System_Details}}
+                </div>
+                <div class="col-sm-4 offset-5">
+                    {{form.To_be_executed_by.label_tag}}{{form.To_be_executed_by}}
+                </div>
+            </div> <br>
+            <div class="row">
+                <div class="col-sm-3">
+                    {{form.Change_Requested_by.label_tag}}{{form.Change_Requested_by}}
+                </div>
+                <div class="col-sm-4 offset-5">
+                    {{form.Change_authorizer.label_tag}}{{form.Change_authorizer}}
+                </div>
+            </div> <br>
+            <div class="col-sm-6">
+                {{form.Change_level.label_tag}}{{form.Change_level}}
+            </div> <br>
+            <div class="col-sm-11">
+                {{form.Change_impact_assessment.label_tag}}{{form.Change_impact_assessment}}
+            </div> <br>
+            <div class="col-sm-6">
+                {{form.Risk_Rating.label_tag}}{{form.Risk_Rating}}
+            </div> <br>
+            <div class="col-sm-6">
+                {{form.Attachments.label_tag}}{{form.Attachments}}
+            </div> <br>
+            <div class="col-sm-11">
+                {{form.Change_rollback_procedures.label_tag}}{{form.Change_rollback_procedures}}
+            </div> <br>
+           
+            <!-- <div class="row">
+                <div class="col-sm-3 sr-only">
+                    {{form.status.label_tag}}{{form.status}}
+                </div>
+                <div class="col-sm-4 offset-5 sr-only">
+                    {{form.Activity_Notes.label_tag}}{{form.Activity_Notes}}
+                </div>
+            </div> <br> -->
+             
+            <!-- <div class="row">
+                <div class="col-sm-3">
+                    {{form1.status.label_tag}}{{form1.status}}
+                </div>
+                <div class="col-sm-4 offset-5">
+                    {{form1.Activity_Notes.label_tag}}{{form1.Activity_Notes}}
+                </div>
+            </div> <br> -->
+            
+            <div class="mt-2 text-center">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    
+    </div>
+
+{% endblock content %}
+    

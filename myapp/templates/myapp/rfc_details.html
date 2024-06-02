@@ -1,0 +1,125 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block title %}  <title>RFC Details</title>  {% endblock title %}
+
+
+{% block content %}
+    <h2 class="text-center">RFC Details</h2>
+     <!-- message framework use -->
+     {% if messages %}
+     {% for message in messages %}
+         <p {% if message %} class="alert alert-{{message.tags}} mb-5 alert-dismissible fade show" {% endif %}  role="alert">{{message}}
+             <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+             </button>
+         </p>
+     {% endfor %}
+ {% endif %}
+ {% if form.non_field_errors %}
+     {% for error in form.non_field_errors %}
+         <p class="alert alert-danger my-3 alert-dismissible fade show" role="alert">{{error}}
+             <button type="button" class="btn-close" data-bs-dismiss="alert" area-label="Close">
+             </button>
+         </p>
+     {% endfor %}
+ {% endif %}
+ <hr>
+ <div class="container-fluid border p-3 rounded-3 ">
+         <div class="row fw-bold">
+            <div class="col-sm-3">
+                {{rfc.Reference_RFC_No.label_tag}}<div class="form-control bg-light">{{pi.Reference_RFC_No}}</div>
+            </div>
+            <div class="col-sm-4 offset-5">
+                {{rfc.Department.label_tag}}<div class="form-control bg-light">{{pi.Department}}</div>
+            </div>
+        </div>  <br>
+        <div class="row fw-bold">
+            <div class="col-sm-3">
+                {{rfc.Request_Type.label_tag}}<div class="form-control bg-light">{{pi.Request_Type}}</div>
+            </div>
+            <div class="col-sm-4 offset-5 mt-4"> 
+                {{rfc.Environment.label_tag}}<div class="form-control bg-light">{{pi.Environment}}</div>
+            </div>
+        </div> <br>
+        <div class="row fw-bold">
+            <div class="col-sm-2">
+                {{rfc.Planned_Date.label_tag}}<div class="form-control bg-light">{{pi.Planned_Date}}</div>
+            </div>
+            <div class="col-sm-4 offset-6">
+                {{rfc.Category.label_tag}}<div class="form-control bg-light">{{pi.Category}}</div>
+            </div>
+        </div> <br>
+        <div class="col-sm-12 fw-bold">
+            {{rfc.Reason_for_change.label_tag}} <textarea  class="form-control bg-light" rows="3">{{pi.Reason_for_change}}</textarea>
+        </div> <br>
+        <div class="col-sm-12">
+            {{rfc.Description_of_change.label_tag}} <textarea  class="form-control bg-light" rows="3">{{pi.Description_of_change}}</textarea>
+        </div> <br>
+        <div class="row fw-bold">
+            <div class="col-sm-3">
+                {{rfc.System_Details.label_tag}} <div class="form-control bg-light">{{pi.System_Details}}</div>
+            </div>
+            <div class="col-sm-4 offset-5">
+                {{rfc.To_be_executed_by.label_tag}} <div class="form-control bg-light">{{pi.To_be_executed_by}}</div>
+            </div>
+        </div> <br>
+        <div class="row fw-bold">
+            <div class="col-sm-3">
+                {{rfc.Change_Requested_by.label_tag}} <div  class="form-control bg-light">{{pi.Change_Requested_by}}</div>
+            </div>
+            <div class="col-sm-4 offset-5">
+                {{rfc.Change_authorizer.label_tag}} <div class="form-control bg-light">{{pi.Change_authorizer}}</div>
+            </div>
+        </div> <br>
+        <div class="row">
+            <div class="col-sm-3 fw-bold">
+                {{rfc.Change_level.label_tag}} <div class="form-control bg-light">{{pi.Change_level}}</div>
+            </div> 
+            <div class="col-sm-4 fw-bold offset-5">
+                {{rfc.Risk_Rating.label_tag}} <div class="form-control bg-light">{{pi.Risk_Rating}}</div>
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-12 fw-bold">
+            {{rfc.Change_impact_assessment.label_tag}} <textarea  class="form-control bg-light" rows="3">{{pi.Change_impact_assessment}}</textarea>
+        </div> <br>
+        <div class="col-sm-12">
+            <div class="text-white bg-secondary fw-bold"  style="padding: 10px;">
+                {{rfc.Attachments.label_tag}}
+            </div>
+            <div class="form-control bg-light"><a href="{{pi.Attachments.url}}" style="text-decoration: none;">{{pi.Attachments | cut:"Attachment/" }}</a> </div>
+             
+        </div> <br>
+        <div class="col-sm-12 fw-bold">
+            {{rfc.Change_rollback_procedures.label_tag}}<textarea  class="form-control bg-light" rows="3">{{pi.Change_rollback_procedures}}</textarea>
+        </div> <br>
+       
+        <div class="col-sm-12">
+            <div class="text-white bg-secondary fw-bold"  style="padding: 10px;">
+                Activity
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Authorized By</th>
+                            <th>Activity Notes</th>
+                            <th>Activity Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Suyog Bhere</td>
+                            <td>abcd</td>
+                            <td>April 3, 2024</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <br>
+ </div>
+    
+  
+
+{% endblock content %}
+    

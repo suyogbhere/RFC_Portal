@@ -1,0 +1,9 @@
+#id_Environment, #id_Change_level,#id_Risk_Rating{
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+#id_Environment_0,#id_Environment_1,#id_Environment_2,#id_Environment_3
+,#id_Change_level_0,#id_Change_level_1,#id_Change_level_2,#id_Risk_Rating_0,#id_Risk_Rating_1,#id_Risk_Rating_2,#id_Risk_Rating_3{
+    margin-left: 10px;
+}

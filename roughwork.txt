@@ -1,0 +1,85 @@
+
+class RFC_Form(models.Model):
+    Rfc_Number = models.CharField(max_length=100, blank=True, null=True,editable=False)
+    Reference_RFC_No = models.IntegerField(default=0)
+    Department = models.ForeignKey(Department, on_delete = models.CASCADE)
+    Request_Type = models.ForeignKey(Request_Type, on_delete = models.CASCADE)
+    Environment = models.CharField(choices=Environment, max_length=100)
+    Planned_Date = models.DateField()
+    Category = models.ForeignKey(Category, on_delete = models.CASCADE)
+    Reason_for_change = models.CharField(max_length = 200)
+    Description_of_change = models.CharField(max_length = 500)
+    System_Details = models.ForeignKey(System_Details, on_delete = models.CASCADE)
+    To_be_executed_by = models.ForeignKey(Executor_Name, on_delete = models.CASCADE)
+    Change_Requested_by = models.CharField(max_length =100)
+    Change_authorizer = models.ForeignKey(Authorizer_Name, on_delete = models.CASCADE)
+    Change_level = models.CharField(choices=Change_level, max_length=100)
+    Change_impact_assessment = models.CharField(max_length=200)
+    Risk_Rating = models.CharField(choices=Risk_Rating,max_length=100)
+    Attachments = models.FileField()
+    Change_rollback_procedures = models.CharField(max_length=200)
+    status = models.CharField(choices=status, max_length=100,null=True, blank=True,default=None)
+    Activity_Notes = models.CharField(max_length=200, null=True, blank=True,default=None)
+
+    # def save(self, *args, **kwargs):
+    #     if not self.pk:  # If the instance is not yet saved in the database
+    #         super().save(*args, **kwargs)  # Save the instance to get the id
+    #         self.Rfc_Number = f'{self.id}'  # Set id_related_field using id
+    #         super().save(*args, **kwargs)  # Save again to update id_related_field
+    #     else:
+    #         super().save(*args, **kwargs)
+
+
+
+
+ <div class="row">
+            <div class="col-sm-3">
+                {{form.status.label_tag}}{{form.status}}
+            </div>
+            <div class="col-sm-4 offset-5">
+                {{form.Activity_Notes.label_tag}}{{form.Activity_Notes}}
+            </div>
+            </div> <br>
+            <!-- <div class="row">
+            <div class="col-sm-3">
+                {{form1.status.label_tag}}{{form1.status}}
+            </div>
+            <div class="col-sm-4 offset-5">
+                {{form1.Activity_Notes.label_tag}}{{form1.Activity_Notes}}
+            </div>
+</div> <br> -->
+
+
+# 'status': forms.Select(attrs={'class':'form-select'}),
+# 'Activity_Notes': forms.TextInput(attrs={'class':'form-control'})
+
+
+@admin.register(RFC_Register)
+class RFC_FormAdmin(admin.ModelAdmin):
+    list_display =['Rfc_Number','Reference_RFC_No','Department','Request_Type','Environment','Planned_Date','Category','Reason_for_change',
+                   'Description_of_change','System_Details','To_be_executed_by','Change_Requested_by','Change_authorizer',
+                   'Change_level','Change_impact_assessment','Risk_Rating','Attachments','Change_rollback_procedures','status','Activity_Notes',
+                   'Activity_Date']
+    
+
+# status = models.CharField(choices=status, max_length=100, null=True)
+# Activity_Notes = models.CharField(max_length=200, null=True)
+# Activity_Date = models.DateTimeField(null= True)
+
+status = models.CharField(max_length=100, null=True,default="pending")
+
+
+
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block title %}  <title>RFC Details</title>  {% endblock title %}
+
+
+
+
+     {% for env in pi.Environment %}
+                {% if env.isalpha  %}
+                    {{env}}
+                {% endif %}
+                {% endfor %}
